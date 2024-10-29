@@ -5,6 +5,7 @@ from app.models.dataset_loader import load_cifar10  # Import the load function
 def create_embedding_model(input_shape):
 
     model = tf.keras.Sequential([
+        tf.keras.layers.Input(shape=input_shape),  # Add Input layer here
         tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=input_shape),
         tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
         tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
@@ -32,4 +33,4 @@ if __name__ == "__main__":
     model.summary()
 
     # Optionally, train the model
-    model.fit(train_images, train_labels, epochs=16, batch_size=64, validation_data=(test_images, test_labels))
+    model.fit(train_images, train_labels, epochs=10, batch_size=64, validation_data=(test_images, test_labels))
