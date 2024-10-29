@@ -1,32 +1,21 @@
-import pickle
-import numpy as np
 import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+import tensorflow as tf
 
-# Define the CIFAR-10 directory
-cifar10_dir = 'E:\\Programs\\Development\\PyCharm\\Python-ML_Portfolio\\dataset\\cifar-10-batches-py'
+def load_cifar10():
+    # Load CIFAR-10 dataset from TensorFlow
+    (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.cifar10.load_data()
 
-def load_batch(filepath):
-    with open(filepath, 'rb') as file:
-        batch = pickle.load(file, encoding='bytes')
-        images = batch[b'data']
-        labels = batch[b'labels']
+    # Normalize the images to the range [0, 1]
+    train_images = train_images.astype('float32') / 255.0
+    test_images = test_images.astype('float32') / 255.0
 
-        # CIFAR-10 images are stored in a flat format (32*32*3)
-        images = images.reshape(-1, 3, 32, 32).transpose(0, 2, 3, 1)
-        return images, labels
+    return train_images, train_labels, test_images, test_labels
 
-# Load all batches
-images_list = []
-labels_list = []
-
-for i in range(1, 6):
-    batch_file = os.path.join(cifar10_dir, f'data_batch_{i}')
-    images, labels = load_batch(batch_file)
-    images_list.append(images)
-    labels_list.extend(labels)
-
-# Combine all batches into a single dataset
-all_images = np.concatenate(images_list)
-all_labels = np.array(labels_list)
-
-print(f"Loaded CIFAR-10 dataset: {all_images.shape[0]} images with shape {all_images.shape[1:]}")
+if __name__ == "__main__":
+    # For testing the function
+    train_images, train_labels, test_images, test_labels = load_cifar10()
+    print(f"Train Images Shape: {train_images.shape}")
+    print(f"Train Labels Shape: {train_labels.shape}")
+    print(f"Test Images Shape: {test_images.shape}")
+    print(f"Test Labels Shape: {test_labels.shape}")
