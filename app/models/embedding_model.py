@@ -1,5 +1,3 @@
-import os
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 import tensorflow as tf
 from app.models.dataset_loader import load_cifar10  # Import the load function
 
@@ -34,4 +32,4 @@ if __name__ == "__main__":
     model.summary()
 
     # Optionally, train the model
-    model.fit(train_images, train_labels, epochs=10, batch_size=64, validation_data=(test_images, test_labels))
+    model.fit(train_images, train_labels, epochs=16, batch_size=64, validation_data=(test_images, test_labels))
