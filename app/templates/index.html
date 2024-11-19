@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Classification</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f0f0, #d9d9d9);
+        }
+
+        /* Main container styling */
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        /* Title styling */
+        h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Form input and button styling */
+        form input[type="file"] {
+            display: block;
+            margin: 1rem auto;
+            font-size: 0.9rem;
+        }
+
+        form button {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background: linear-gradient(90deg, #0056b3, #003f7f);
+        }
+
+        /* Image preview section */
+        #preview {
+            margin-top: 1rem;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: none;
+        }
+
+        #preview, .prediction img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Prediction output styling */
+        .prediction {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .prediction h2 {
+            color: #007bff;
+        }
+
+        .prediction p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Brain Tumor Classification</h1>
+        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" onchange="previewImage(event)">
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Image preview before submission -->
+        <div>
+            <h3>Uploaded Image Preview:</h3>
+            <img id="preview" src="#" alt="Image preview">
+        </div>
+
+        <!-- Results and Uploaded Image after prediction -->
+        {% if prediction %}
+        <div class="prediction">
+            <h2>Prediction: {{ prediction }}</h2>
+            <p>Confidence: {{ confidence }} %</p>
+            <h3>Uploaded Image:</h3>
+            <img src="{{ image }}" alt="Uploaded image">
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const preview = document.getElementById('preview');
+            preview.src = URL.createObjectURL(event.target.files[0]);
+            preview.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
