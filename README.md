@@ -1,4 +1,4 @@
-##Brain Tumor Classification Using Convolutional Neural Networks
+**_ _Brain Tumor Classification Using Convolutional Neural Networks_ _**
 
 This repository contains a TensorFlow-based implementation of a Convolutional Neural Network (CNN) for classifying brain tumors into four categories: Glioma, Meningioma, No Tumor, and Pituitary Tumor.
 
@@ -36,6 +36,8 @@ This project can be extended for:
 Also for Back-End used Flask for one page web app
 
 Thanks for **Sartaj**  from **Kaggle** for dataset [https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri]
+
+**For run and test - just run app.py**
 
 ![image](https://github.com/user-attachments/assets/6632e7c4-0a07-460a-af48-51d22b0d2021)
 Plots with training info throughout almost 50 epochs
