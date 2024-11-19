@@ -1,4 +1,4 @@
-###Brain Tumor Classification Using Convolutional Neural Networks
+##Brain Tumor Classification Using Convolutional Neural Networks
 
 This repository contains a TensorFlow-based implementation of a Convolutional Neural Network (CNN) for classifying brain tumors into four categories: Glioma, Meningioma, No Tumor, and Pituitary Tumor.
 
