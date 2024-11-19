@@ -52,4 +52,4 @@ Here  is a little showcase of web app + model:
 
 ![image](https://github.com/user-attachments/assets/9065274f-5b86-40c5-9543-a939fb138e79)
 
-But it still hard for model to find Glioma Tumor. I think model need more filters - by the way, feel free to modify :)
+But it still hard for model to find Glioma Tumor. I think model need more filters anyway - feel free to modify :)
